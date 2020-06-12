@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:Course</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+</head>
+<body class = "bgcolor">
+    
+    <%- include partials/header %>
+    
+
+    <div class = "reqcontainer padtop">
+        <h3 class = " text-center">
+            <img style = "padding-top: 30px; padding-bottom: 40px;" width = "200"src="http://res.cloudinary.com/studynodecloud/image/upload/SNlogo.png">
+        </h3>
+        <h1 class = "text-center" style = "padding-bottom : 10px">Create an account<%= user%></h1>
+        <form class="needs-validation padtop " action="/auth/register" method="post" novalidate>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" id="validationCustom01" minlength="3" maxlength="16" name="firstName" placeholder="First name" required>
+                    <!--<div class="valid-feedback">
+                        Looks good!
+                    </div>-->
+                    <div class="invalid-feedback">
+                        Please provide a valid first name.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" id="validationCustom02" name="lastName" maxlength="20" placeholder="Last name" required>
+                    <div class="invalid-feedback">
+                        Please provide a last name.
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <input type="number" class="form-control" id="validationCustom011" min = "0" max = "31" name="day" placeholder="Day" required>
+                    
+                </div>
+                <div class="col-md-4 mb-3">
+                    <select class="custom-select" id="inputGroupSelect022" name="month" required>
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <input type="number" class="form-control" id="validationCustom033" max = "2018" name="year" placeholder="Year" required>
+                    <!--<div class="valid-feedback">
+                        Looks good!
+                    </div>-->
+                </div>
+            </div>
+            <!--<div class="form-row">
+                <div class="col-md-12 mb-3">
+                <input type="text" class="form-control" id="validationCustom03" name="email" placeholder="Email" >
+                <div class="invalid-feedback">
+                    Please provide a valid email.
+                </div>
+                </div>
+            </div>-->
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                <input type="text" class="form-control" maxlength="20" id="validationCustom03" name="telegram" placeholder="Telegram name">
+                <div class="invalid-feedback">
+                    Please provide a telegram name.
+                </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                <input type="text" class="form-control" maxlength="20" id="validationCustom03" name="facebook" placeholder="Facebook name">
+                <div class="invalid-feedback">
+                    Please provide a facebool name.
+                </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                <input type="password" class="form-control" name="password" minlength="6" maxlength="16" placeholder="Password" required>
+                <div class="invalid-feedback">
+                    Please provide a valid password.
+                </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                <input type="password" class="form-control" name="password2" minlength="6" maxlength="16" placeholder="Re-enter password" required>
+                <div class="invalid-feedback">
+                    Please provide a valid password.
+                </div>
+                </div>
+            </div>
+            <button class="btn btn-dark col-md-12" type="submit">Create a free account</button>
+        </form>
+        <a class="btn btn-dark col-md-12" href="/auth/login" style = "margin-top : 10px">
+            <span class="button-text">Already have an account?</span>
+        </a>
+        <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                let forms = document.getElementsByClassName('needs-validation');
+                let validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                    form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+        </script>
+
+    </div>
+
+    
+    
+</body>
+
+</html>

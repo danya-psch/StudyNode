@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:User</title>
+    <script type="text/javascript" src="/javascripts/lib/jquery-latest.min.js"></script>
+    <script>
+        $(function() {
+            $('#status').on('change', function() {
+                console.log("!");
+                $.post( "change", { id : "<%=auth._id%>", role : this.value });
+            });
+        });
+    </script>
+    <style>
+
+        .margin {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body bgcolor = "#eee">
+    <%- include partials/header %>
+    <div class = "container padtop">
+        <table style = "width : 100%">
+            <th style = "width : 30%">
+                <div class="card" id = "card" style="width: 100%; min-height: 500px">
+                    <img class="card-img-top" src="<%=auth.avaUrl%>" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">
+                        <div class = "margin">Login : <%=auth.name%></div>
+                        <div class = "margin">Role : <%=auth.role%></div>
+                        <%if (auth.role !== "Admin") { %>
+                            <select class = "form-control grid-100 select-box" id="status" style = "margin-top : 10px; width : 50%">
+                                <option value="<%=auth.role%>" selected="selected" data-placeholder="placeholder"><%=auth.role%></option>
+                                <% for (let role of roles) { %>
+                                    <option value="<%=role%>"><%=role%></option>
+                                <% }; %>
+                            </select>
+                        <% } %>
+                        </p>
+                    </div>
+                </div>
+            </th>
+            <th style = "padding-left : 2%; width : 66%;  height : 100%" >
+                <div class="card" id = "setwidth" style=" width : 100%;  min-height: 100%;">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <div class = "margin">First name : <%=auth.name%></div>
+                            <div class = "margin">Last name : <%=auth.lastName%></div>
+                            <div class = "margin">Date : <%=auth.date%></div>
+                            <div class = "margin">Date of birth : <%=auth.dateOfBirth%></div>
+                            <div  class = "margin">Telegram name : 
+                            <% if (auth.telegram !== "") { %> <%=auth.telegram%> <%} else { %>
+                                <span class="badge badge-warning">not set</span>
+                            <% } %> 
+                            </div>
+                            <div id = "facebookk" class = "margin">Facebook name : 
+                            <% if (auth.facebookName !== "") { %> <%=auth.facebookName%> <%} else { %>
+                                <span id = "not_set2" class="badge badge-warning">not set</span>
+                            <% } %> 
+                            </div>
+                            
+                            
+                        </p>
+                    </div>
+                </div>
+            </th>
+        </table>
+
+    </div>
+    <script>
+        document.getElementById("setwidth").style.height = `${document.getElementById('card').offsetHeight}px`;
+    </script>
+    <%- include partials/footer %>
+
+</body>
+</html>

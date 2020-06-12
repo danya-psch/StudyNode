@@ -1,0 +1,7 @@
+<% for (let task of tasks) { %>
+    <tr>
+        <th><font color = "white"><a href="tasks/<%= task._id %>"><%= task.name %></a></font></th>
+        <th><%= task.subject %></th>
+        <th><%= task.balls %></th>
+    </tr>
+<% }; %>

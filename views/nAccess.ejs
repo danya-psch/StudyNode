@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:About</title>
+</head>
+<body class = "bgcolor">
+    <div class = "container text-center">
+        <div class = "text-center" style = "padding-top : 100px">
+            <img id = "404" src="https://res.cloudinary.com/studynodecloud/image/upload/v1543163150/404.png" class="media-object">
+            <h1 class = "padtop"><a href="/">to homepage</a></h1>
+        </div>
+    </div>
+    <script>
+
+    let width = window.innerWidth;
+    if (width < 1000) {
+        console.log("!");
+        document.getElementById("404").style.height = "100px";
+    }
+    </script>
+</body>
+</html>

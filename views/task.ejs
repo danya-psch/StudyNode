@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:Task</title>
+</head>
+<body class = "bgcolor">
+    <%- include partials/header %>
+    <div class = "container just_text padtop">
+        
+        <h1 class = "text-center"><%=task.name%></h1>
+        
+        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Remove current task?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form class = "left" method = "post" action="/tasks/delete/<%=task.id%>">
+                            <input class="btn btn-danger" type = "submit" value = "Delete">  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <textarea readonly id = "description" class = "form-control"   placeholder = "Enter description">
+            <%=task.description%>
+        </textarea>
+                
+        <script>
+        
+        let description = document.getElementById( 'description' );
+        description.style.height = description.scrollHeight + 2 + "px"
+        </script>
+
+        
+        <%- include partials/footer %>
+    </div>
+</body>
+</html>

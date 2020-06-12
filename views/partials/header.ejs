@@ -1,0 +1,130 @@
+<!--
+<nav class="navbar navbar-inverse bg-inverse myborder">
+	<div class = "container">
+		<div class = "navbar-header hidden-xs myborder">
+            <a class = "navbar-brand">StudyNode</a>
+        </div>
+            <ul class="nav navbar-nav">
+                <li <% if (typeof(page_name) !== 'undefined' && page_name==='index') { %>class="active"<% } %>><a href="/">Home</a></li>
+                <% if (typeof user !== 'undefined' && user.role === "Admin") { %>
+                <li <% if (typeof(page_name) !== 'undefined' && page_name==='users') { %>class="active"<% } %>><a href="/users">Users</a></li>
+                <% } %>
+                <li <% if (typeof(page_name) !== 'undefined' && page_name==='tasks') { %>class="active"<% } %>><a href="/tasks">Tasks</a></li>
+                <li <% if (typeof(page_name) !== 'undefined' && page_name==='courses') { %>class="active"<% } %>><a href="/courses">Courses</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li <% if (typeof(page_name) !== 'undefined' && page_name==='about') { %>class="active"<% } %>><a href="/about">About</a></li>
+                
+                <li <% if (typeof(page_name) !== 'undefined' && page_name==='account') { %>class="active"<% } %>>
+                    <% if (typeof user === 'undefined') { %>
+                        <a class = "mydd" data-toggle = "dropdown">My account
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu" style = "width : 250px">
+                            <li>
+                                <a href="/auth/login" >
+                                <button class="btn mybtn bcheckin myli" style = "width : 100%">Log In</button>
+                                </a>
+                            </li>
+
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="/">Account Settings</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="/auth/register">Create a Account</a></li>
+                        </ul>
+                    <% } else { %>
+                        <a class = "mydd" data-toggle = "dropdown"><%= user.name%>
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu" style = "width : 250px">
+                            <li style = " height : 50px; margin-left: 20px">
+                                <h4 ><b><%= user.name%></b></h4>
+                                <%= user.role%>
+                            </li>
+
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="/">Account Settings</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="/auth/logout">Log Out</a></li>
+                        </ul>
+                    <% } %>
+                </li>
+            </ul>
+    </div>
+</nav> -->
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class = "container">
+        <a class="navbar-brand" href="/">
+            <!--<img src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">-->
+            StudyNode
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class = "nav-item" <% if (typeof(page_name) !== 'undefined' && page_name==='index') { %>class="active"<% } %>>
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <% if (typeof user !== 'undefined' && user.role === "Admin") { %>
+                    <li class = "nav-item" <% if (typeof(page_name) !== 'undefined' && page_name==='users') { %>class="active"<% } %>>
+                        <a class="nav-link" href="/users">Users</a>
+                    </li>
+                <% } %>
+                <% if (typeof user !== 'undefined') { %>
+                    <li class = "nav-item" <% if (typeof(page_name) !== 'undefined' && page_name==='tasks') { %>class="active"<% } %>>
+                        <a class="nav-link" href="/tasks">Tasks</a>
+                    </li>
+                <% } %>
+                <% if (typeof user !== 'undefined') { %>
+                    <li class = "nav-item" <% if (typeof(page_name) !== 'undefined' && page_name==='courses') { %>class="active"<% } %>>
+                        <a class="nav-link" href="/courses">Courses</a>
+                    </li>
+                <% } %>
+                <% if (typeof user !== 'undefined' && user.role !== "Utilizer") { %>
+                    <li class = "nav-item" <% if (typeof(page_name) !== 'undefined' && page_name==='decision') { %>class="active"<% } %>>
+                        <a class="nav-link" href="/decision">Submissions</a>
+                    </li>
+                <% } %>
+            </ul>
+            <ul class="navbar-nav">
+                <li <% if (typeof(page_name) !== 'undefined' && page_name==='about') { %>class="active"<% } %>>
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <!---->
+                
+                <li class="nav-item dropdown">
+                    <% if (typeof user === 'undefined') { %>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            My account
+                        </a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style = "width:250px">
+                            <a class="dropdown-item" href="/auth/login">
+                                <button type="button" class="btn btn-dark" style = "width : 100%">Log In</button>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/auth/register">Create a Account</a>
+                        </div>
+                    <% } else { %>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%= user.name%>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style = "width:250px">
+                            <a class="dropdown-item" href = "/auth/profile" style = "height : 70px">
+                                <h4><b><%= user.name%></b></h4>
+                                <%= user.role%>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/auth/logout">Log Out</a>
+                        </div>
+                    <% } %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

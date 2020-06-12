@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:About</title>
+</head>
+<body class = "btncolor">
+    <div class = "container">
+        <div style = "margin-left : 40px">
+            <h1 >Доступні ресурси:</h1>
+            <hr>
+            <div class="media">
+                <div class="media-left media-top text-center">
+                    <img src="https://res.cloudinary.com/studynodecloud/image/upload/v1542400743/user_2.png" class="media-object" style="width:200px">
+                    <h2>Users:</h2>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">Спільний url : https://d-studynode.herokuapp.com/api/v1/users</h3>
+                        <h4>1) Перегляд користувачів:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /</p>
+                            <p>• метод : get</p>
+                            <p>• параметри : page(вказуе сторінку пагінації)</p>
+                            <p>• результат : користувачі з поточної сторінкки : res.json(users)</p>
+                            <p>• помилки : 1) якщо не вказана сторінка : res.json("write the page number in the query");</p>
+                            <p style = "margin-left : 77px"> 2) Помилка зчитування з db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>2) Перегляд обраного користувача:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:userId</p>
+                            <p>• метод : get</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : користувач з вказаним id : res.json(user)</p>
+                            <p>• помилки : 1) якщо тип зчитанного користувача undefined : res.status(404).json("user not found")</p>
+                            <p style = "margin-left : 77px"> 2) Помилка зчитування з db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>3) Додавання користувача:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:userId</p>
+                            <p>• метод : put</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : оновлений користувач з вказаним id : res.status(201).json(user)</p>
+                            <p>• помилки : 1) помилка додавання до db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>4) Зміна користувача:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:userId</p>
+                            <p>• метод : put</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : оновлений користувач з вказаним id : res.status(201).json(user)</p>
+                            <p>• помилки : 1) помилка зміни користувача в db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>4) Видалення користувача:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:userId</p>
+                            <p>• метод : delete</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : Видалення користувача з вказаним id : res.json({ message: 'Successfully deleted' })</p>
+                            <p>• помилки : 1) помилка видалення користувача з db : res.status(500).json(err.toString())</p>
+                        </div>
+                </div>
+            </div>
+            <!---->
+            <hr>
+            <div class="media">
+                <div class="media-left media-top text-center">
+                    <img src="https://res.cloudinary.com/studynodecloud/image/upload/v1542400717/task.png" class="media-object" style="width:200px">
+                    <h2>Tasks:</h2>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">Спільний url : https://d-studynode.herokuapp.com/api/v1/tasks</h3>
+                        <h4>1) Перегляд завдань:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /</p>
+                            <p>• метод : get</p>
+                            <p>• параметри : page(вказуе сторінку пагінації)</p>
+                            <p>• результат : завдання з поточної сторінкки : res.json(tasks)</p>
+                            <p>• помилки : 1) якщо не вказана сторінка : res.json("write the page number in the query");</p>
+                            <p style = "margin-left : 77px"> 2) Помилка зчитування з db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>2) Перегляд обраного завдання:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:taskId</p>
+                            <p>• метод : get</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : завдання з вказаним id : res.json(task)</p>
+                            <p>• помилки : 1) якщо тип зчитанного завдання undefined : res.status(404).json("task not found")</p>
+                            <p style = "margin-left : 77px"> 2) Помилка зчитування з db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>3) Додавання завдання:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:taskId</p>
+                            <p>• метод : put</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : оновлене завдання з вказаним id : res.status(201).json(task)</p>
+                            <p>• помилки : 1) помилка додавання до db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>4) Зміна завдання:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:taskId</p>
+                            <p>• метод : put</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : оновлене завдання з вказаним id : res.status(201).json(task)</p>
+                            <p>• помилки : 1) помилка зміни завдання в db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>4) Видалення завдання:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:tasksId</p>
+                            <p>• метод : delete</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : Видалення завдання з вказаним id : res.json({ message: 'Successfully deleted' })</p>
+                            <p>• помилки : 1) помилка видалення завдання з db : res.status(500).json(err.toString())</p>
+                        </div>
+                </div>
+            </div>
+            <!---->
+            <hr>
+            <div class="media">
+                <div class="media-left media-top text-center">
+                    <img src="https://res.cloudinary.com/studynodecloud/image/upload/v1542400725/course.png" class="media-object" style="width:200px">
+                    <h2>Courses:</h2>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">Спільний url : https://d-studynode.herokuapp.com/api/v1/courses</h3>
+                        <h4>1) Перегляд курсів:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /</p>
+                            <p>• метод : get</p>
+                            <p>• параметри : page(вказуе сторінку пагінації)</p>
+                            <p>• результат : курси з поточної сторінкки : res.json(courses)</p>
+                            <p>• помилки : 1) якщо не вказана сторінка : res.json("write the page number in the query");</p>
+                            <p style = "margin-left : 77px"> 2) Помилка зчитування з db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>2) Перегляд обраного курсу:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:courseId</p>
+                            <p>• метод : get</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : курс з вказаним id : res.json(course)</p>
+                            <p>• помилки : 1) якщо тип зчитанного завдання undefined : res.status(404).json("task not found")</p>
+                            <p style = "margin-left : 77px"> 2) Помилка зчитування з db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>3) Додавання курсу:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:courseId</p>
+                            <p>• метод : put</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : оновлений курс з вказаним id : res.status(201).json(course)</p>
+                            <p>• помилки : 1) помилка додавання до db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>4) Зміна курсу:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:courseId</p>
+                            <p>• метод : put</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : оновлений курс з вказаним id : res.status(201).json(course)</p>
+                            <p>• помилки : 1) помилка зміни курсу в db : res.status(500).json(err.toString())</p>
+                        </div>
+                        <h4>4) Видалення курсу:</h4>
+                        <div style = "margin-left : 20px">
+                            <p>• URL : /:courseId</p>
+                            <p>• метод : delete</p>
+                            <p>• параметри : -</p>
+                            <p>• результат : Видалення курсу з вказаним id : res.json({ message: 'Successfully deleted' })</p>
+                            <p>• помилки : 1) помилка видалення курсу з db : res.status(500).json(err.toString())</p>
+                        </div>
+                </div>
+            </div>
+            <hr>
+            <h2>Спосіб авторизації для доступу до ресурсів :</h2>
+            <p style = "margin-left : 220px; margin-bottom : 160px">Авторизація відбуваеться за допомогою Basic авторизації ( цій авторизіції данні користувача закодовані в форматі base64 ). Авторизуе користувача функція з стратегікю BasicStrategy з модуля passport-http </p>
+        </div>
+    </div>
+</body>
+</html>

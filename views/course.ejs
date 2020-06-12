@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:Course</title>
+    <script src = "javascripts/lib/three.min.js"></script>
+    
+</head>
+<body class = "bgcolor">
+    <%- include partials/header %>
+
+    <div class = "container padtop">
+        <h1 class="text-center"><%=course.name%></h1>
+        <div class="form-row text-center">
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#delete" style = " width : 100px;">Delete</button>
+            <form action = "<%=course.id%>/update" method = "get" style = " width : 100px; margin-left : 20px">
+                <button class = "btn btn-dark" type = "submit" style = " width : 100%">Update</button>
+            </form>
+        </div>
+
+        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Remove current course?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form class = "left" method = "post" action="/courses/delete/<%=course.id%>">
+                            <input class="btn btn-danger" type = "submit" value = "Delete">  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!--<div class = "col-md-12">
+            <div style = "opacity: 1">
+                <div class="media">
+                    <div class="media-left">
+                        <img src="<%=course.avaUrl%>" class="media-object" style="width:200px">
+                    </div>
+                    <div class="media-body">
+                        <table class = "table" id = "table" >
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Subject</th>
+                                <th>Balls</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% for (let task of course.tasks) { %>
+                                <tr>
+                                <th><a href="/tasks/<%= task._id %>"><%= task.name %></a></th>
+                                <th><%= task.subject %></th>
+                                <th><%= task.balls %></th>
+                                </tr>
+                            <% }; %>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>-->
+    </div>
+</body>
+
+</html>

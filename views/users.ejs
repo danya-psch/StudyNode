@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:Users</title>
+</head>
+<body class ="bgcolor">
+    <%- include partials/header %>
+    <div class = "container padtop">
+    <table class="table ">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+         <% for (const auth of users) { %>
+            <tr>
+            <th><a href="users/<%= auth.id %>"><%= auth.name %></th>
+            <th><%= auth.role %></th>
+            </tr>
+        <% }; %>
+        </tbody>
+    </table>
+
+    
+
+    <%- include partials/footer %>
+    </div>
+</body>
+</html>

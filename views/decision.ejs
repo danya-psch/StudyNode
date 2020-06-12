@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:Tasks</title>
+    <style>
+    .vertical-center {
+        position: absolute;
+        top: 50%;
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    </style>
+</head>
+<body class = "bgcolor" >
+
+    <%- include partials/header %>
+    <div class = "container padtop">
+        <div id="decision">
+            <%if (decisions.length === 0) {%>
+                <div class="alert alert-dark" role="alert" style = "margin-bottom : 10px; margin-top : 10px;">
+                    There's nothing here
+                </div>
+            <%} else {%>
+                <% for (let decision of decisions) { %>
+                    <div class="alert alert-dark" role="alert" style = "margin-bottom : 10px; margin-top : 10px;">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style = "max-width : 200px"><a href = 'users/<%=decision.student._id%>'><%=decision.student.name%></a></span>
+                                <span class="input-group-text" style = "max-width : 200px"><a href = 'tasks/<%=decision.node.task._id%>' ><%=decision.node.task.name%></a></span>
+                                <span class="input-group-text" ><a href = '<%=decision.file%>' download >Answer</a></span>
+                                <span class="input-group-text" ><%=decision.date%></span>
+                            </div>
+                            <input type="number" class="form-control" min = "0" id = 'balls<%=decision._id%>' max = "<%=decision.node.task.balls%>" placeholder="Enter balls"/>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-dark" type="button" onclick = 'onClickFunc("<%=decision.node.task.balls%>","<%=decision.node._id%>","<%=decision.node.task.name%>","<%=decision.course._id%>","<%=decision.student._id%>", "<%=decision._id%>")'>Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+
+    <script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src = "/javascripts/decision.js"></script>
+
+    <!--<script>
+        function onClickFunc(max, node, name, course, user, decision) {
+            if (document.getElementById(`balls${decision}`).value !== "") {
+                console.log(document.getElementById(`balls${decision}`).value);
+                console.log(max);
+                if (document.getElementById(`balls${decision}`).value >= 0 && Number(document.getElementById(`balls${decision}`).value) <= Number(max)) {
+                    console.log(name);
+                    fetch('/users/addNode', {
+                        method: 'POST',
+                        headers: {
+                            'Accept' : 'application/json',
+                            'Content-Type' : 'application/json'
+                        },
+                        body: JSON.stringify({
+                            node: node,
+                            nodeName: name,
+                            courseId: course,
+                            user: user,
+                            decision: decision,
+                            balls: document.getElementById(`balls${decision}`).value
+                        })
+                    });
+                    let elem = document.getElementById(`balls${decision}`).parentNode.parentNode;
+                    elem.parentNode.removeChild(elem);
+                }
+            }
+        } 
+    </script>-->
+        
+
+        
+    <%- include partials/footer %>
+    </div>
+
+</body>
+
+</html>

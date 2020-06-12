@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:Courses</title>
+    
+</head>
+<body class ="bgcolor">
+    <%- include partials/header %>
+
+    <!--<div class = "container padtop">
+        <div id="get-data-from-server-app">
+            <div v-if="locat">
+                <div v-for="course in locat.data.courses">
+                    <div class="form-group col-md-4">
+                        <div class="card text-white bg-dark" style="width: 100%">
+                            <a href = "/courses/{{course.id}}">
+                                <img class="card-img-top" src="https://res.cloudinary.com/studynodecloud/image/upload/v1541792493/bgimage_2.jpg" alt="Card image cap"/>
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <script>
+        // let url = "courses/abracodabra";
+        // new Vue({
+        //     el:'#get-data-from-server-app',
+        //     data: {
+        //         locat: null,
+        //         error: null
+        //     },
+        //     mounted: function () {
+        //         this.loadData()
+        //     },
+        //     methods: {
+        //         loadData: function() { 
+        //             axios.get(url)
+        //                 .then(response => {
+        //                     console.log(response);
+        //                     this.locat = response;
+        //                 });
+        //         }
+        //     }
+        // })
+    </script>
+
+    <div class = "container padtop">
+        <form action = "courses/new" method = "get">
+            <h1 class = "text-center">All courses
+                <% if (user.role !== "Utilizer") {%><button type="submit" class="btn btn-dark">New</button><% } %>
+            </h1>
+        </form>
+        <%if (courses.length === 0) { %>
+            <div class="alert alert-dark" role="alert" style = "margin-bottom : 10px; margin-top : 10px;">
+                There's nothing here
+            </div>
+        <% } %>
+        <% for (let i = 0; i < courses.length; i += 3) { %>
+            <div class="form-row padtop">
+                <% for(let j = i; j < i + 3; j++) { %>
+                    <% if (typeof courses[j] !== 'undefined') { %>
+                        <div class="form-group col-md-4" style = "height : 475px">
+                            <div class="card text-white bg-dark" style="width: 100%; height : 100%">
+                                <a href = "/courses/check/<%=courses[j].id%>">
+                                    <img class="card-img-top" src="<%=courses[j].avaUrl%>" style = "height : 350px" alt="Card image cap"/>
+                                </a>
+                                <div class="card-body"  id="app">
+                                    <form action = "/courses/<%=courses[j].id%>" method = "get">
+                                        <h4 class = "card-text text-center"><%=courses[j].name%>
+                                            <% if (typeof user !== 'undefined' && (user.id == courses[j].creator || user.role === "Admin"))  { %><button type="submit" class="btn btn-light">Update</button><% } %>
+                                        </h4>
+                                    </form>
+                                    <p class="card-text"><%=courses[j].description%></p>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+    <%- include partials/footer %>
+    
+    
+    
+</body>
+</html>

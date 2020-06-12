@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:Course</title>
+    <style>
+        .icon-facebook-white {
+            background: url("https://res.cloudinary.com/studynodecloud/image/upload/v1544979186/facebook-icon.png") no-repeat;
+        }
+    </style>
+</head>
+<body class = "bgcolor" >
+    
+    <%- include partials/header %>
+    <div class = "reqcontainer padtop">
+    <h3 class = " text-center">
+        <img style = "padding-top: 30px; padding-bottom: 40px;" width = "200"src="http://res.cloudinary.com/studynodecloud/image/upload/SNlogo.png">
+    </h3>
+        
+        <form action="/auth/login" method="post" class="control-group">
+            <div class="control-group">
+                <input class = "form-control" name="name" maxlength="20" type="text" placeholder="First Name"/>
+            </div>
+        
+            <div class="control-group">
+                <input class = "form-control" name="password" maxlength="16" type="password" placeholder="Password"/>
+            </div>
+
+            <div class="control-group submit ">
+                <button type="submit" id="submit" class="btn btn-dark col-md-12" tabindex="1">Авторизация</button>
+            </div>
+            
+        </form>
+        <form action="/auth/facebook/" method="get">
+            <button id="facebook" class="btn btn-dark col-md-12" rel="external" tabindex="1">
+            <img src = "https://res.cloudinary.com/studynodecloud/image/upload/v1544979186/facebook-icon.png">
+                Facebook
+            </button>
+        </form>
+        
+        <div style = "margin-top : 10px" class="text-center">
+            <a href="/auth/register">Create a Account</a>
+        </div>
+    </div>
+</body>
+
+</html>

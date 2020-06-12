@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include partials/head %>
+    <title>StudyNode:User</title>
+    
+    <style>
+        .myborder {
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: .25rem;
+        }
+        .margin {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body bgcolor = "#eee">
+    <%- include partials/header %>
+    <div class = "container padtop">
+        <table style = "width : 100%">
+            <th style = "width : 32%">
+                <div class="card" id = "card"style="width: 100%; height : 100%; min-height: 500px">
+                    <img class="card-img-top" id = "ava" src="<%=auth.avaUrl%>" alt="Card image cap">
+                    <div class="card-body">    
+                        
+                        <p class="card-text">
+                        <div class = "margin">Login : <%=auth.name%></div>
+                        <div class = "margin">Role : <%=auth.role%></div>
+                        </p>
+                    </div>
+                </div>
+            </th>
+            <th style = "padding-left : 2%; width : 66%;" >
+                <div class="card" id = "setwidth">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <div class = "margin">First name : <%=auth.name%></div>
+                            <div>Last name : <%=auth.lastName%></div>
+                            <div class = "margin">Date : <%=auth.date%></div>
+                            <div class = "margin">Date of birth : <%=auth.dateOfBirth%></div>
+                            <div id = "telega" class = "margin">Telegram name : 
+                            <% if (auth.telegram !== "") { %> <%=auth.telegram%> <%} else { %>
+                                <span id = "not_set1" class="badge badge-warning">not set</span>
+                            <% } %> 
+                            </div>
+                            <div id = "facebookk" class = "margin">Facebook name : 
+                            <% if (auth.facebookName !== "") { %> <%=auth.facebookName%> <%} else { %>
+                                <span id = "not_set2" class="badge badge-warning">not set</span>
+                            <% } %> 
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </th>
+        </table>
+
+        
+
+        <div class="card" style=" width : 100%; margin-top : 2%">
+            <div class="card-body">
+                <!---->
+                <div class="alert alert-light"role="alert">
+                    <h4>Edit info:</h4>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend" >
+                        <span class="input-group-text" style = "min-width : 100px" id="basic-addon1">Telegram</span>
+                    </div>
+                    <input type="text" id = "telegram" maxlength="20" class="form-control" placeholder="Telegram">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend" >
+                        <span class="input-group-text" style = "min-width : 100px" id="basic-addon1">Facebook</span>
+                    </div>
+                    <input type="text" id = "facebook" maxlength="20" class="form-control" placeholder="Facebook">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01" style = "min-width : 100px">Avatar</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" id = "avaUrl" class="custom-file-input" accept="image/*">
+                        <label class="custom-file-label">Choose file</label>
+                    </div>
+                </div>
+                <button id = "update" class="btn btn-dark" style = "margin-left : 5%; width : 100px">Update</button>
+                <!---->
+            </div>
+        </div>
+        
+        <script src = "/javascripts/profile.js"></script>
+        <!--<script>
+            document.getElementById("setwidth").style.height = `${document.getElementById('card').offsetHeight}px`;
+            
+
+            document.getElementById("update").addEventListener( 'click', () => {
+                if (document.getElementById("telegram").value !== "" || document.getElementById("avaUrl").value !== "" || document.getElementById("facebook").value !== "") {
+                    
+                    
+                    let data = new FormData();
+                    if (document.getElementById("telegram").value !== "") data.append('telegram', document.getElementById("telegram").value);
+                    if (document.getElementById("avaUrl").value !== "") data.append('avaUrl', document.getElementById("avaUrl").files[0]);
+                    if (document.getElementById("facebook").value !== "") data.append('facebook', document.getElementById("facebook").value);
+                    
+                    console.log(data);
+                    fetch('/users/update', { 
+                        method: 'POST',
+                        body: data 
+                    })
+                    .then(response => response.json())
+                    .then(success => {
+                        document.getElementById("ava").src = success.avaUrl;
+                        if (typeof success.telegram !== 'undefined' && success.telegram !== null && success.telegram !== "") {
+                            let elem = document.getElementById('not_set1');
+                            if (elem !== null ) elem.parentNode.removeChild(elem);
+                            let parent = document.getElementById('telega');
+                            parent.textContent = `Telegram name : ${success.telegram}`;
+                        }
+                        if (typeof success.facebook !== 'undefined' && success.facebook !== null && success.facebook !== "") {
+                            let elem = document.getElementById('not_set2');
+                            if (elem !== null ) elem.parentNode.removeChild(elem);
+                            let parent = document.getElementById('facebookk');
+                            parent.textContent = `Facebook name : ${success.facebook}`;
+                        }
+                    })
+                    .catch(error => console.log(error));
+                }
+            
+            }, false);
+        </script>-->
+
+    </div>
+    <%- include partials/footer %>
+</body>
+</html>
